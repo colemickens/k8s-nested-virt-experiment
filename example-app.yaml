@@ -1,0 +1,43 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-cpuinfo
+spec:
+  selector:
+    app: nginx-cpuinfo
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-cpuinfo
+  labels:
+    app: nginx-cpuinfo
+  annotations:
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    command: [ "bash", "-c", "cat /proc/cpuinfo > /usr/share/nginx/html/index.html; nginx -g 'daemon off;'" ]
+    ports:
+    - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: nginx-cpuinfo
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: nginx-cpuinfo
+              servicePort: 80
+            path: /
