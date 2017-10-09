@@ -24,13 +24,5 @@ $ gcloud compute ssh "frakti-nested-virt-demo"
 Then you can copy the `example-pod.yaml`, apply it, curl and see the cpuinfo from inside the container/VM.
 
 
-### WIP
-
-There is some extra stuff on the `develop` branches, including opening the apiserver for external access,
-auto-deploying nginx, and trying to auto-deploy nginx-ingress.
-
-* launcher: https://github.com/colemickens/k8s-nested-virt-experiment/blob/develop/start.sh
-* allinone: https://github.com/colemickens/frakti/blob/develop/cluster/allinone.sh
-
 ### TODO:
 * ? integrate this with some of the niceties over here: https://github.com/kelseyhightower/kubeadm-single-node-cluster

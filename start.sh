@@ -34,7 +34,7 @@ if ! gcloud compute images describe "${NESTED_IMAGE}"; then
 fi
 
 SCRIPT="$(mktemp)"
-curl 'https://raw.githubusercontent.com/colemickens/frakti/develop/cluster/allinone.sh' > "${SCRIPT}"
+curl 'https://raw.githubusercontent.com/colemickens/frakti/master/cluster/allinone.sh' > "${SCRIPT}"
 
 gcloud compute instances create "${INSTANCE_NAME}" \
     --zone="${ZONE}" \
@@ -48,7 +48,7 @@ gcloud compute firewall-rules create "k8s-api-${INSTANCE_NAME}" \
   --target-tags "${INSTANCE_NAME}" \
   --source-ranges 0.0.0.0/0
 
-gcloud compute firewall-rules create "http-${INSTANCE_NAME}" \
+gcloud compute firewall-rugles create "http-${INSTANCE_NAME}" \
   --allow tcp:80 \
   --target-tags "${INSTANCE_NAME}" \
   --source-ranges 0.0.0.0/0
@@ -87,6 +87,4 @@ sleep 40
 
 # TODO: how to use chart with hostPort? :/ or target a GCE routing role to 30080/30443 or something...
 helm install stable/nginx-ingress \
-    --name nginxingress0 \
-
-#    --values service.type="ClusterIP" \
+    --name nginxingress0
