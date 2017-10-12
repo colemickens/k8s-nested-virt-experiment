@@ -21,8 +21,11 @@ $ gcloud compute ssh "frakti-nested-virt-demo"
 # you can see the install process
 ```
 
-Then you can copy the `example-pod.yaml`, apply it, curl and see the cpuinfo from inside the container/VM.
+The `./start.sh` script will attempt to install helm, and then traefik, along with
+an example pod that shows `/proc/cpuinfo` from inside a container (inside a KVM VM)o
 
 
-### TODO:
-* ? integrate this with some of the niceties over here: https://github.com/kelseyhightower/kubeadm-single-node-cluster
+### TODO
+
+The example pod isn't setting the rkt stage1, and rkt stage1 probably doesn't default to 'kvm',
+so the rktlet setup probably isn't actually taking advantage of any nested virt right now.

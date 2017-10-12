@@ -31,7 +31,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: nginx
+#    kubernetes.io/ingress.class: nginx
   name: nginx-cpuinfo
 spec:
   rules:
