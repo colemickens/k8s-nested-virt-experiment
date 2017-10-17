@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# NOTE: This was forked from github.com/kubernetes/frakti -> cluster/allinone.sh
+
 set -o errexit
 set -o nounset
 set -o pipefail
